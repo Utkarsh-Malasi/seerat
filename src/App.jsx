@@ -1,0 +1,893 @@
+import { useEffect, useState } from 'react'
+import './App.css'
+import heroPoster from './images/gallery/WhatsApp Image 2026-02-20 at 12.15.12 PM.jpeg'
+import profileVideo from './images/gallery/profile.mp4'
+
+const projects = [
+  // ===================== TV SERIALS =====================
+
+  {
+    id: 'dal-chini-2',
+    title: 'Dal Chini 2',
+    category: 'tv',
+    typeLabel: 'TV Serial',
+    role: 'Child Artist',
+    year: '2024',
+    image: 'https://i.ytimg.com/vi/4B1ft0ZgNJw/maxresdefault.jpg',
+    description:
+      'Television drama project showcasing expressive emotional performance and confident on-screen presence in family-driven storytelling.',
+  },
+
+  {
+    id: 'ganga-mai-ki-betiyan',
+    title: 'Ganga Mai Ki Betiyan (Zee TV)',
+    category: 'tv',
+    typeLabel: 'TV Serial',
+    role: 'Supporting Child Role',
+    year: '2024',
+    image: 'https://tse3.mm.bing.net/th/id/OIP.I0EwGW3KxUUUOrPqqnP3RAHaEK?w=1200&h=675&rs=1&pid=ImgDetMain&o=7&rm=3',
+    description:
+      'Zee TV serial featuring strong emotional narrative, portraying culturally rooted storytelling and confident performance.',
+  },
+
+  {
+    id: 'sampurna',
+    title: 'Sampurna (Star Plus)',
+    category: 'tv',
+    typeLabel: 'TV Serial',
+    role: 'Child Artist',
+    year: '2024',
+    image: 'https://tse1.mm.bing.net/th/id/OIP.2y1SXDwKJ3GVIG3F9TedCwHaED?rs=1&pid=ImgDetMain&o=7&rm=3',
+    description:
+      'Star Plus television project with natural acting comfort and engaging screen presence.',
+  },
+
+  // ===================== MUSIC VIDEOS =====================
+
+  {
+    id: 'mera-ishq',
+    title: 'Mera Ishq – Sagar Bhatia',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Performance',
+    year: '2023',
+    image: 'https://fastly-s3.allmusic.com/release/mr0006204365/front/400/nQpsDIrkiIGqCZ0kd1ZE4ZhUoDg0hsvx4F4sL4oO-nA=.jpg',
+    description:
+      'Soulful Sufi music experience with singer Sagar Bhatia, blending harmony and expressive visuals.',
+  },
+
+  {
+    id: 'masoom-sharma',
+    title: 'Music Video – Masoom Sharma (MS)',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Masoom+Sharma+Song+MS',
+    description:
+      'Energetic performance alongside Masoom Sharma capturing expressive movement and dynamic screen presence.',
+  },
+
+  {
+    id: 'kulwinder-billa',
+    title: 'Music Video – Kulwinder Billa (KB)',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Kulwinder+Billa+Song+KB',
+    description:
+      'Punjabi music video featuring vibrant expression and confident presence.',
+  },
+
+  {
+    id: 'balaam',
+    title: 'Balaam – Aman Jaji',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://img.youtube.com/vi/MlxDNu6ljdk/maxresdefault.jpg',
+    description:
+      'Dynamic music video with singer Aman Jaji, showcasing style, rhythm, and emotive performance.',
+  },
+
+  {
+    id: 'vicky-song',
+    title: 'Music Video – Vicky (V)',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Vicky+Song+V',
+    description:
+      'High-energy music project with singer Vicky, emphasizing confidence and screen charm.',
+  },
+
+  {
+    id: 'harpreet-song',
+    title: 'Music Video – Harpreet (H)',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Harpreet+Song+H',
+    description:
+      'Expressive and rhythm-driven music video appearance with Harpreet.',
+  },
+
+  {
+    id: 'aao-ramji',
+    title: 'Aao Ramji – Hansraj Raghuwanshi',
+    category: 'song',
+    typeLabel: 'Devotional Music Video',
+    role: 'Child Artist',
+    year: '2023',
+    image: 'https://img.youtube.com/vi/mvr1E6cg5p8/maxresdefault.jpg',
+    description:
+      'Devotional music experience with Hansraj Raghuwanshi, radiating warmth, sincerity and childlike devotion.',
+  },
+
+  {
+    id: 'maa-bhola',
+    title: 'Maa – Bhola Sangruria',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Emotional Child Role',
+    year: '2023',
+    image: 'https://i.ytimg.com/vi/-maGP96d55c/maxresdefault.jpg',
+    description:
+      'Emotionally resonant music video with Bhola Sangruria centered around maternal love and expressive acting.',
+  },
+
+  {
+    id: 'stair-records-maa',
+    title: 'Maa – Stair Records (SR)',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Maa+Stair+Records+SR',
+    description:
+      'Artistic expression in a music project released by Stair Records.',
+  },
+
+  {
+    id: 'saah-tiger',
+    title: 'Saah Tiger Song (S)',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Saah+Tiger+Song+S',
+    description:
+      'High-energy Punjabi music project with a bold visual aesthetic.',
+  },
+
+  {
+    id: 'tere-jehi',
+    title: 'Tere Jehi – Shivjot (SJ)',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Tere+Jehi+Shivjot+SJ',
+    description:
+      'Romantic Punjabi music project with emotive visuals and expressive storytelling.',
+  },
+
+  {
+    id: 'chandan-ki-palki',
+    title: 'Chandan Ki Palki – Roshan Prince',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://via.placeholder.com/800x1000?text=Chandan+Ki+Palki+Roshan+Prince',
+    description:
+      'Traditional and culturally rich music video performance showcasing expressive acting.',
+  },
+
+  // ===================== FILMS =====================
+
+  {
+    id: 'safar-movie',
+    title: 'Safar – with Sunny Deol',
+    category: 'film',
+    typeLabel: 'Feature Film',
+    role: 'Child Artist',
+    year: '2024',
+    image: 'https://img.youtube.com/vi/MlxDNu6ljdk/maxresdefault.jpg',
+    description:
+      'Cinematic appearance alongside Sunny Deol delivering confident screen presence.',
+  },
+
+  {
+    id: 'rabba-menu-maaf-kari',
+    title: 'Rabba Menu Maaf Kari',
+    category: 'film',
+    typeLabel: 'Feature Film',
+    role: 'Supporting Role',
+    year: '2024',
+    image: 'https://via.placeholder.com/800x1000?text=Rabba+Menu+Maaf+Kari',
+    description:
+      'Family-underlined theatrical film showcasing emotional narrative.',
+  },
+
+  {
+    id: 'punjab-files',
+    title: 'Punjab Files',
+    category: 'film',
+    typeLabel: 'Feature Film',
+    role: 'Child Role',
+    year: '2024',
+    image: 'https://via.placeholder.com/800x1000?text=Punjab+Files',
+    description:
+      'Regional storytelling with expressive acting and natural screen energy.',
+  },
+
+  {
+    id: 'godday-godday-chaa-2',
+    title: 'Godday Godday Chaa 2',
+    category: 'film',
+    typeLabel: 'Feature Film',
+    role: 'Supporting Child Role',
+    year: '2024',
+    image: 'https://via.placeholder.com/800x1000?text=Godday+Godday+Chaa+2',
+    description:
+      'Culturally vibrant sequel with confident screen performance.',
+  },
+
+  {
+    id: 'ek-tere-karke',
+    title: 'Ek Tere Karke',
+    category: 'film',
+    typeLabel: 'Feature Film',
+    role: 'Child Artist',
+    year: '2024',
+    image: 'https://via.placeholder.com/800x1000?text=Ek+Tere+Karke',
+    description:
+      'Film project featuring expressive acting and dynamic on-screen participation.',
+  },
+
+  // ===================== ADVERTISEMENT =====================
+
+  {
+    id: 'tata-allianz',
+    title: 'TATA Allianz Group Advertisement',
+    category: 'ad',
+    typeLabel: 'Commercial',
+    role: 'Featured Child',
+    year: '2023',
+    image: 'https://img.youtube.com/vi/9rZYFlDlb5Y/maxresdefault.jpg',
+    description:
+      'National ad campaign emphasizing trust and family values with confident screen presence.',
+  },
+];
+
+const galleryModules = import.meta.glob(
+  './images/gallery/*.{png,jpg,jpeg,JPG,JPEG,webp,avif}',
+  {
+    eager: true,
+    as: 'url',
+  },
+)
+
+const galleryImages = Object.entries(galleryModules).map(
+  ([path, src], index) => {
+    const filename = path.split('/').pop() || `image-${index + 1}`
+    const baseName = filename.replace(/\.[^.]+$/, '')
+    const label = baseName.replace(/[_-]+/g, ' ')
+    return {
+      id: `gallery-${index + 1}`,
+      thumb: src,
+      full: src,
+      alt: `Seerat gallery photo - ${label}`,
+    }
+  },
+)
+
+const achievements = [
+  {
+    year: '2025',
+    title: 'Best Child Performer (Television)',
+    description:
+      'Awarded by Mumbai Kids Talent Awards for performance in “City Lights”.',
+  },
+  {
+    year: '2024',
+    title: 'Featured in National Brand Campaign',
+    description:
+      'Lead face for Sunrise Cereal nationwide TV and digital campaign.',
+  },
+  {
+    year: '2023',
+    title: 'Festival Film Selection',
+    description:
+      '“Autumn Letters” selected at multiple children’s film festivals across India.',
+  },
+]
+
+function App() {
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [navOpen, setNavOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [gallerySelection, setGallerySelection] = useState(null)
+  const year = new Date().getFullYear()
+
+  useEffect(() => {
+    const elements = document.querySelectorAll('[data-animate]')
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('visible'))
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        threshold: 0.18,
+      },
+    )
+    elements.forEach((element) => observer.observe(element))
+    return () => observer.disconnect()
+  }, [])
+
+  const filteredProjects =
+    activeFilter === 'all'
+      ? projects
+      : projects.filter((project) => project.category === activeFilter)
+
+  return (
+    <div className="app-root">
+      <header className="site-header">
+        <div className="container header-inner">
+          <div className="logo-mark">CA</div>
+          <nav className="main-nav" aria-label="Main navigation">
+            <button
+              className="nav-toggle"
+              type="button"
+              aria-label="Toggle navigation"
+              aria-expanded={navOpen ? 'true' : 'false'}
+              onClick={() => setNavOpen((open) => !open)}
+            >
+              <span />
+              <span />
+            </button>
+            <ul className={`nav-links${navOpen ? ' open' : ''}`}>
+              <li>
+                <a href="#hero" onClick={() => setNavOpen(false)}>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#about" onClick={() => setNavOpen(false)}>
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#projects" onClick={() => setNavOpen(false)}>
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a href="#gallery" onClick={() => setNavOpen(false)}>
+                  Gallery
+                </a>
+              </li>
+              <li>
+                <a href="#showreel" onClick={() => setNavOpen(false)}>
+                  Showreel
+                </a>
+              </li>
+              <li>
+                <a href="#achievements" onClick={() => setNavOpen(false)}>
+                  Achievements
+                </a>
+              </li>
+              <li>
+                <a href="#contact" onClick={() => setNavOpen(false)}>
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section id="hero" className="hero section-shell">
+          <div className="container">
+            <div className="section-inner hero-grid">
+              <div className="hero-content" data-animate>
+                <p className="eyebrow">Professional Child Actor</p>
+                <h1 className="hero-title">Seerat Sharma</h1>
+                <p className="hero-tagline">Child Actor | Performer | Model</p>
+                <p className="hero-summary">
+                  A confident, expressive young performer with experience across
+                  television, film, songs, and commercials.
+                </p>
+                <div className="hero-actions">
+                  <a href="#projects" className="btn primary-btn">
+                    View Projects
+                  </a>
+                  <a href="#showreel" className="btn ghost-btn">
+                    Watch Showreel
+                  </a>
+                </div>
+              </div>
+              <div className="hero-media" data-animate>
+                <div className="hero-image-frame">
+                  <video
+                    className="hero-image"
+                    src={profileVideo}
+                    poster={heroPoster}
+                    autoPlay
+                    muted
+                    playsInline
+                    loop
+                  />
+                  <div className="hero-badge">
+                    <span className="hero-badge-label">Available for</span>
+                    <span className="hero-badge-value">
+                      Films • TV • Ads
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="section-shell">
+          <div className="container">
+            <div className="section-inner" data-animate>
+              <div className="section-header">
+                <h2>About</h2>
+                <p>
+                  Professional, warm, and camera-ready, with a cinematic
+                  presence suited for leading and supporting roles.
+                </p>
+              </div>
+              <div className="about-grid">
+                <div className="about-bio">
+                  <p>
+                    Seerat is a dedicated child actor with strong on-camera
+                    presence, natural expressions, and the ability to take
+                    direction with ease. She has experience performing in
+                    television serials, digital films, and commercial
+                    advertisements.
+                  </p>
+                  <p>
+                    Known for her expressive eyes and nuanced emotional range,
+                    she is comfortable on set, adapts quickly to new
+                    environments, and performs confidently in both dramatic and
+                    light-hearted roles.
+                  </p>
+                 
+                </div>
+                <div className="about-details">
+                  <dl className="detail-list">
+                    <div className="detail-row">
+                      <dt>Age</dt>
+                      <dd>9 years</dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Height</dt>
+                      <dd>4&apos; (122 cm)</dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Weight</dt>
+                      <dd>20 kg</dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Location</dt>
+                      <dd>Mohali,Punjab</dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Languages</dt>
+                      <dd>English, Hindi, Punjabi</dd>
+                    </div>
+                  </dl>
+                  <div className="skills">
+                    <h3>Skills</h3>
+                    <ul className="chips">
+                      <li>On-camera acting</li>
+                      <li>Dialogue delivery</li>
+                      <li>Facial expressions</li>
+                      <li>Dancing</li>
+                      <li>Photoshoots</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="section-shell">
+          <div className="container">
+            <div className="section-inner" data-animate>
+              <div className="section-header">
+                <h2>Projects</h2>
+                <p>
+                  Selected work across television, films, songs, and brand
+                  commercials.
+                </p>
+              </div>
+              <div
+                className="project-filters"
+                role="tablist"
+                aria-label="Project categories"
+              >
+                <button
+                  type="button"
+                  className={`filter-btn${
+                    activeFilter === 'all' ? ' active' : ''
+                  }`}
+                  role="tab"
+                  aria-selected={activeFilter === 'all' ? 'true' : 'false'}
+                  onClick={() => setActiveFilter('all')}
+                >
+                  All
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn${
+                    activeFilter === 'tv' ? ' active' : ''
+                  }`}
+                  role="tab"
+                  aria-selected={activeFilter === 'tv' ? 'true' : 'false'}
+                  onClick={() => setActiveFilter('tv')}
+                >
+                  TV Serials
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn${
+                    activeFilter === 'film' ? ' active' : ''
+                  }`}
+                  role="tab"
+                  aria-selected={activeFilter === 'film' ? 'true' : 'false'}
+                  onClick={() => setActiveFilter('film')}
+                >
+                  Films
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn${
+                    activeFilter === 'song' ? ' active' : ''
+                  }`}
+                  role="tab"
+                  aria-selected={activeFilter === 'song' ? 'true' : 'false'}
+                  onClick={() => setActiveFilter('song')}
+                >
+                  Songs
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn${
+                    activeFilter === 'ad' ? ' active' : ''
+                  }`}
+                  role="tab"
+                  aria-selected={activeFilter === 'ad' ? 'true' : 'false'}
+                  onClick={() => setActiveFilter('ad')}
+                >
+                  Advertisements
+                </button>
+              </div>
+              <div className="project-grid">
+                {filteredProjects.map((project) => (
+                  <article
+                    key={project.id}
+                    className="project-card"
+                    data-category={project.category}
+                  >
+                    <div className="project-thumb">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="project-meta">
+                      <span className="project-tag">{project.typeLabel}</span>
+                      <h3 className="project-title">{project.title}</h3>
+                      <p className="project-role">Role: {project.role}</p>
+                      <p className="project-year">{project.year}</p>
+                      <p className="project-description">
+                        {project.description}
+                      </p>
+                      <button
+                        type="button"
+                        className="text-link"
+                        onClick={() => setSelectedProject(project)}
+                      >
+                        View Details
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="gallery" className="section-shell">
+          <div className="container">
+            <div className="section-inner" data-animate>
+              <div className="section-header">
+                <h2>Gallery</h2>
+                <p>
+                  Curated images that highlight range, expressions, and on-camera
+                  comfort.
+                </p>
+              </div>
+              <div className="gallery-grid">
+                {galleryImages.map((image) => (
+                  <button
+                    key={image.id}
+                    type="button"
+                    className="gallery-item"
+                    onClick={() => setGallerySelection(image)}
+                  >
+                    <img
+                      src={image.thumb}
+                      alt={image.alt}
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="showreel" className="section-shell">
+          <div className="container">
+            <div className="section-inner" data-animate>
+              <div className="section-header">
+                <h2>Showreel</h2>
+                <p>
+                  A concise reel showcasing recent performances and on-camera
+                  range.
+                </p>
+              </div>
+              <div className="showreel-frame">
+                <div className="video-wrapper">
+                  <iframe
+                    src="https://www.youtube.com/embed/GyWw1RDCpyE?si=CAiAbTrF39F8peOT"
+                    title="Child actor showreel"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* <section id="achievements" className="section-shell">
+          <div className="container">
+            <div className="section-inner" data-animate>
+              <div className="section-header">
+                <h2>Achievements</h2>
+                <p>
+                  A selection of recognitions that highlight professionalism and
+                  on-screen impact.
+                </p>
+              </div>
+              <div className="achievement-timeline">
+                {achievements.map((item) => (
+                  <article key={item.year} className="achievement-card">
+                    <div className="achievement-year">{item.year}</div>
+                    <div className="achievement-body">
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section> */}
+
+        <section id="contact" className="section-shell">
+          <div className="container">
+            <div className="section-inner" data-animate>
+              <div className="section-header">
+                <h2>Contact</h2>
+                <p>
+                  For casting, auditions, and collaborations, please use the
+                  contact details below.
+                </p>
+              </div>
+              <div className="contact-grid">
+                <div className="contact-details">
+                  <h3>Parent / Manager</h3>
+                  <p className="contact-name">Priya Sharma</p>
+                  <dl className="detail-list">
+                    <div className="detail-row">
+                      <dt>Phone</dt>
+                      <dd>
+                        <a href="tel:+911234567890">+91 12345 67890</a>
+                      </dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Email</dt>
+                      <dd>
+                        <a href="mailto:casting@seeratactor.com">
+                          casting@seeratactor.com
+                        </a>
+                      </dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Instagram</dt>
+                      <dd>
+                        <a
+                          href="https://www.instagram.com/official_seerat223?utm_source=qr&igsh=aGRnaW1uMDQzcnVy"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          instagram.com/seerat
+                        </a>
+                      </dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Facebook</dt>
+                      <dd>
+                        <a
+                          href="https://share.google/FSN01L7kqvs00nevo"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          facebook.com/seerat
+                        </a>
+                      </dd>
+                    </div>
+                    <div className="detail-row">
+                      <dt>Facebook</dt>
+                      <dd>
+                        <a
+                          href="https://youtube.com/@offical_seerat223?si=30p7oaWdqhq08uHc"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          youtube.com/@offical_seerat
+                        </a>
+                      </dd>
+                    </div>
+                  </dl>
+                  <div className="contact-icons">
+                    <a
+                      href="tel:+911234567890"
+                      className="contact-icon"
+                      aria-label="Call parent or manager"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6.6 2.8 8.8 2A2 2 0 0 1 11.3 3.2l1 3.4a2 2 0 0 1-.5 2L10.7 9.7a11 11 0 0 0 4.6 4.6l1.1-1.1a2 2 0 0 1 2-.5l3.4 1a2 2 0 0 1 1.2 2.5l-.8 2.2A2 2 0 0 1 20.3 20 17 17 0 0 1 4 3.7a2 2 0 0 1 2.6-0.9Z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="mailto:casting@seeratactor.com"
+                      className="contact-icon"
+                      aria-label="Email for casting enquiries"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.2l8 5 8-5V7H4Zm0 3.5V17h16v-6.5l-7.4 4.6a2 2 0 0 1-2.1 0L4 10.5Z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.instagram.com/official_seerat223?utm_source=qr&igsh=aGRnaW1uMDQzcnVy"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="contact-icon"
+                      aria-label="Instagram profile"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm4 3.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5Zm0 2A1.5 1.5 0 1 0 13.5 12 1.5 1.5 0 0 0 12 10.5Zm4.25-3.75a1 1 0 1 1-.7 1.7 1 1 0 0 1 .7-1.7Z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://share.google/FSN01L7kqvs00nevo"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="contact-icon"
+                      aria-label="Facebook profile"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M13 21v-7h2.3a1 1 0 0 0 1-.8l.4-2.5A1 1 0 0 0 15.7 9H13V7.2A1.2 1.2 0 0 1 14.3 6H17a1 1 0 0 0 1-1V3.7A1 1 0 0 0 17 2h-3.8A4.2 4.2 0 0 0 9 6.3V9H7a1 1 0 0 0-1 .9v2.3a1 1 0 0 0 1 .8h2v7a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          
+          <p className="footer-meta">
+            Photography and footage available on request.
+          </p>
+        </div>
+      </footer>
+
+      {selectedProject && (
+        <div
+          className="modal-backdrop open"
+          aria-hidden="false"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setSelectedProject(null)
+            }
+          }}
+        >
+          <div
+            className="modal-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
+          >
+            <button
+              type="button"
+              className="modal-close"
+              aria-label="Close details"
+              onClick={() => setSelectedProject(null)}
+            />
+            <div className="modal-content">
+              <h3 id="project-modal-title">{selectedProject.title}</h3>
+              <p className="modal-role">{selectedProject.role}</p>
+              <p className="modal-year">{selectedProject.year}</p>
+              <p className="modal-body">{selectedProject.description}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {gallerySelection && (
+        <div
+          className="modal-backdrop open"
+          aria-hidden="false"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setGallerySelection(null)
+            }
+          }}
+        >
+          <div
+            className="modal-dialog gallery-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Expanded gallery image"
+          >
+            <button
+              type="button"
+              className="modal-close"
+              aria-label="Close image"
+              onClick={() => setGallerySelection(null)}
+            />
+            <div className="modal-content gallery-modal-content">
+              <img
+                src={gallerySelection.full}
+                alt={gallerySelection.alt}
+                className="gallery-modal-image"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default App
