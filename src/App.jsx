@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import heroPoster from './images/gallery/WhatsApp Image 2026-02-20 at 12.15.12 PM.jpeg'
 import profileVideo from './images/gallery/profile.mp4'
+import logoImg from './images/workexp/logo.png'
 
 const projects = [
   // ===================== TV SERIALS =====================
 
   {
-    id: 'dal-chini-2',
-    title: 'Dal Chini 2',
+    id: 'dal-chini',
+    title: 'Dal Chini',
     category: 'tv',
     typeLabel: 'TV Serial',
     role: 'Child Artist',
     year: '2024',
-    image: 'https://i.ytimg.com/vi/4B1ft0ZgNJw/maxresdefault.jpg',
-    description:
-      'Television drama project showcasing expressive emotional performance and confident on-screen presence in family-driven storytelling.',
+    image: 'https://img.youtube.com/vi/XcsJrkamw5w/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=XcsJrkamw5w',
   },
 
   {
@@ -25,9 +25,8 @@ const projects = [
     typeLabel: 'TV Serial',
     role: 'Supporting Child Role',
     year: '2024',
-    image: 'https://tse3.mm.bing.net/th/id/OIP.I0EwGW3KxUUUOrPqqnP3RAHaEK?w=1200&h=675&rs=1&pid=ImgDetMain&o=7&rm=3',
-    description:
-      'Zee TV serial featuring strong emotional narrative, portraying culturally rooted storytelling and confident performance.',
+    image: 'https://img.youtube.com/vi/0X5M33ABkd8/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=0X5M33ABkd8',
   },
 
   {
@@ -37,12 +36,11 @@ const projects = [
     typeLabel: 'TV Serial',
     role: 'Child Artist',
     year: '2024',
-    image: 'https://tse1.mm.bing.net/th/id/OIP.2y1SXDwKJ3GVIG3F9TedCwHaED?rs=1&pid=ImgDetMain&o=7&rm=3',
-    description:
-      'Star Plus television project with natural acting comfort and engaging screen presence.',
+    image: 'https://img.youtube.com/vi/ENUsFOm9BNk/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=ENUsFOm9BNk',
   },
 
-  // ===================== MUSIC VIDEOS =====================
+  // ===================== SONGS =====================
 
   {
     id: 'mera-ishq',
@@ -51,9 +49,8 @@ const projects = [
     typeLabel: 'Music Video',
     role: 'Featured Performance',
     year: '2023',
-    image: 'https://fastly-s3.allmusic.com/release/mr0006204365/front/400/nQpsDIrkiIGqCZ0kd1ZE4ZhUoDg0hsvx4F4sL4oO-nA=.jpg',
-    description:
-      'Soulful Sufi music experience with singer Sagar Bhatia, blending harmony and expressive visuals.',
+    image: 'https://img.youtube.com/vi/BR6LqRAfb4g/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=BR6LqRAfb4g',
   },
 
   {
@@ -63,21 +60,18 @@ const projects = [
     typeLabel: 'Music Video',
     role: 'Featured Appearance',
     year: '2023',
-    image: 'https://via.placeholder.com/800x1000?text=Masoom+Sharma+Song+MS',
-    description:
-      'Energetic performance alongside Masoom Sharma capturing expressive movement and dynamic screen presence.',
+    image: 'https://via.placeholder.com/800x1000?text=Masoom+Sharma+MS',
   },
 
   {
     id: 'kulwinder-billa',
-    title: 'Music Video – Kulwinder Billa (KB)',
+    title: 'Music Video – Kulwinder Billa',
     category: 'song',
     typeLabel: 'Music Video',
     role: 'Featured Appearance',
     year: '2023',
-    image: 'https://via.placeholder.com/800x1000?text=Kulwinder+Billa+Song+KB',
-    description:
-      'Punjabi music video featuring vibrant expression and confident presence.',
+    image: 'https://img.youtube.com/vi/fO39St3ADnk/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=fO39St3ADnk',
   },
 
   {
@@ -88,20 +82,18 @@ const projects = [
     role: 'Featured Appearance',
     year: '2023',
     image: 'https://img.youtube.com/vi/MlxDNu6ljdk/maxresdefault.jpg',
-    description:
-      'Dynamic music video with singer Aman Jaji, showcasing style, rhythm, and emotive performance.',
+    videoLink: 'https://www.youtube.com/watch?v=MlxDNu6ljdk',
   },
 
   {
     id: 'vicky-song',
-    title: 'Music Video – Vicky (V)',
+    title: 'Music Video – Vicky',
     category: 'song',
     typeLabel: 'Music Video',
     role: 'Featured Appearance',
     year: '2023',
-    image: 'https://via.placeholder.com/800x1000?text=Vicky+Song+V',
-    description:
-      'High-energy music project with singer Vicky, emphasizing confidence and screen charm.',
+    image: 'https://img.youtube.com/vi/vs-ZSzn2xso/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=vs-ZSzn2xso',
   },
 
   {
@@ -112,8 +104,6 @@ const projects = [
     role: 'Featured Appearance',
     year: '2023',
     image: 'https://via.placeholder.com/800x1000?text=Harpreet+Song+H',
-    description:
-      'Expressive and rhythm-driven music video appearance with Harpreet.',
   },
 
   {
@@ -123,9 +113,8 @@ const projects = [
     typeLabel: 'Devotional Music Video',
     role: 'Child Artist',
     year: '2023',
-    image: 'https://img.youtube.com/vi/mvr1E6cg5p8/maxresdefault.jpg',
-    description:
-      'Devotional music experience with Hansraj Raghuwanshi, radiating warmth, sincerity and childlike devotion.',
+    image: 'https://img.youtube.com/vi/gg7XZ3d4zWg/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=gg7XZ3d4zWg',
   },
 
   {
@@ -135,45 +124,63 @@ const projects = [
     typeLabel: 'Music Video',
     role: 'Emotional Child Role',
     year: '2023',
-    image: 'https://i.ytimg.com/vi/-maGP96d55c/maxresdefault.jpg',
-    description:
-      'Emotionally resonant music video with Bhola Sangruria centered around maternal love and expressive acting.',
+    image: 'https://img.youtube.com/vi/-maGP96d55c/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=-maGP96d55c',
   },
 
   {
-    id: 'stair-records-maa',
-    title: 'Maa – Stair Records (SR)',
+    id: 'maa-stair-records',
+    title: 'Maa – Stair Records',
     category: 'song',
     typeLabel: 'Music Video',
     role: 'Featured Appearance',
     year: '2023',
-    image: 'https://via.placeholder.com/800x1000?text=Maa+Stair+Records+SR',
-    description:
-      'Artistic expression in a music project released by Stair Records.',
+    image: 'https://img.youtube.com/vi/af3HoSQAjgA/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=af3HoSQAjgA',
   },
 
   {
     id: 'saah-tiger',
-    title: 'Saah Tiger Song (S)',
+    title: 'Saah Tiger Song',
     category: 'song',
     typeLabel: 'Music Video',
     role: 'Featured Appearance',
     year: '2023',
-    image: 'https://via.placeholder.com/800x1000?text=Saah+Tiger+Song+S',
-    description:
-      'High-energy Punjabi music project with a bold visual aesthetic.',
+    image: 'https://img.youtube.com/vi/9rZYFlDlb5Y/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=9rZYFlDlb5Y',
+  },
+
+  {
+    id: 'tara-tara',
+    title: 'Tara Tara – Gurlez Akhtar',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://img.youtube.com/vi/4h3VvW4qv5s/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=4h3VvW4qv5s',
   },
 
   {
     id: 'tere-jehi',
-    title: 'Tere Jehi – Shivjot (SJ)',
+    title: 'Tere Jehi – Shivjot',
     category: 'song',
     typeLabel: 'Music Video',
     role: 'Featured Appearance',
     year: '2023',
-    image: 'https://via.placeholder.com/800x1000?text=Tere+Jehi+Shivjot+SJ',
-    description:
-      'Romantic Punjabi music project with emotive visuals and expressive storytelling.',
+    image: 'https://img.youtube.com/vi/LvL8EUumrVQ/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=LvL8EUumrVQ',
+  },
+
+  {
+    id: 'saiyaan',
+    title: 'Saiyaan',
+    category: 'song',
+    typeLabel: 'Music Video',
+    role: 'Featured Appearance',
+    year: '2023',
+    image: 'https://img.youtube.com/vi/GgPmSV786do/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=GgPmSV786do',
   },
 
   {
@@ -183,9 +190,8 @@ const projects = [
     typeLabel: 'Music Video',
     role: 'Featured Appearance',
     year: '2023',
-    image: 'https://via.placeholder.com/800x1000?text=Chandan+Ki+Palki+Roshan+Prince',
-    description:
-      'Traditional and culturally rich music video performance showcasing expressive acting.',
+    image: 'https://img.youtube.com/vi/IOMyPZgdHzg/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=IOMyPZgdHzg',
   },
 
   // ===================== FILMS =====================
@@ -197,9 +203,8 @@ const projects = [
     typeLabel: 'Feature Film',
     role: 'Child Artist',
     year: '2024',
-    image: 'https://img.youtube.com/vi/MlxDNu6ljdk/maxresdefault.jpg',
-    description:
-      'Cinematic appearance alongside Sunny Deol delivering confident screen presence.',
+    image: 'https://img.youtube.com/vi/tboP0zeBu-I/maxresdefault.jpg',
+    videoLink: 'https://www.youtube.com/watch?v=tboP0zeBu-I',
   },
 
   {
@@ -210,8 +215,6 @@ const projects = [
     role: 'Supporting Role',
     year: '2024',
     image: 'https://via.placeholder.com/800x1000?text=Rabba+Menu+Maaf+Kari',
-    description:
-      'Family-underlined theatrical film showcasing emotional narrative.',
   },
 
   {
@@ -222,8 +225,6 @@ const projects = [
     role: 'Child Role',
     year: '2024',
     image: 'https://via.placeholder.com/800x1000?text=Punjab+Files',
-    description:
-      'Regional storytelling with expressive acting and natural screen energy.',
   },
 
   {
@@ -234,8 +235,6 @@ const projects = [
     role: 'Supporting Child Role',
     year: '2024',
     image: 'https://via.placeholder.com/800x1000?text=Godday+Godday+Chaa+2',
-    description:
-      'Culturally vibrant sequel with confident screen performance.',
   },
 
   {
@@ -246,8 +245,6 @@ const projects = [
     role: 'Child Artist',
     year: '2024',
     image: 'https://via.placeholder.com/800x1000?text=Ek+Tere+Karke',
-    description:
-      'Film project featuring expressive acting and dynamic on-screen participation.',
   },
 
   // ===================== ADVERTISEMENT =====================
@@ -260,8 +257,7 @@ const projects = [
     role: 'Featured Child',
     year: '2023',
     image: 'https://img.youtube.com/vi/9rZYFlDlb5Y/maxresdefault.jpg',
-    description:
-      'National ad campaign emphasizing trust and family values with confident screen presence.',
+    videoLink: 'https://www.youtube.com/watch?v=9rZYFlDlb5Y',
   },
 ];
 
@@ -269,7 +265,8 @@ const galleryModules = import.meta.glob(
   './images/gallery/*.{png,jpg,jpeg,JPG,JPEG,webp,avif}',
   {
     eager: true,
-    as: 'url',
+    query: '?url',
+    import: 'default',
   },
 )
 
@@ -347,7 +344,9 @@ function App() {
     <div className="app-root">
       <header className="site-header">
         <div className="container header-inner">
-          <div className="logo-mark">CA</div>
+          <div className="logo-container">
+            <img src={logoImg} alt="Seerat Logo" className="logo-img" />
+          </div>
           <nav className="main-nav" aria-label="Main navigation">
             <button
               className="nav-toggle"
@@ -385,11 +384,11 @@ function App() {
                   Showreel
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="#achievements" onClick={() => setNavOpen(false)}>
                   Achievements
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href="#contact" onClick={() => setNavOpen(false)}>
                   Contact
@@ -406,7 +405,7 @@ function App() {
             <div className="section-inner hero-grid">
               <div className="hero-content" data-animate>
                 <p className="eyebrow">Professional Child Actor</p>
-                <h1 className="hero-title">Seerat Sharma</h1>
+                <h1 className="hero-title">Seerat </h1>
                 <p className="hero-tagline">Child Actor | Performer | Model</p>
                 <p className="hero-summary">
                   A confident, expressive young performer with experience across
@@ -431,6 +430,7 @@ function App() {
                     muted
                     playsInline
                     loop
+                    controls
                   />
                   <div className="hero-badge">
                     <span className="hero-badge-label">Available for</span>
@@ -711,19 +711,19 @@ function App() {
               <div className="contact-grid">
                 <div className="contact-details">
                   <h3>Parent / Manager</h3>
-                  <p className="contact-name">Priya Sharma</p>
+                  <p className="contact-name">Anupreet Arora</p>
                   <dl className="detail-list">
                     <div className="detail-row">
                       <dt>Phone</dt>
                       <dd>
-                        <a href="tel:+911234567890">+91 12345 67890</a>
+                        <a href="tel:+919779119333 ">+91 97791 19333</a>
                       </dd>
                     </div>
                     <div className="detail-row">
                       <dt>Email</dt>
                       <dd>
-                        <a href="mailto:casting@seeratactor.com">
-                          casting@seeratactor.com
+                        <a href="mailto:seeratofficial216@gmail.com">
+                          seeratofficial216@gmail.com
                         </a>
                       </dd>
                     </div>
@@ -766,7 +766,7 @@ function App() {
                   </dl>
                   <div className="contact-icons">
                     <a
-                      href="tel:+911234567890"
+                      href="tel:+919779119333 "
                       className="contact-icon"
                       aria-label="Call parent or manager"
                     >
@@ -775,7 +775,7 @@ function App() {
                       </svg>
                     </a>
                     <a
-                      href="mailto:casting@seeratactor.com"
+                      href="mailto: seeratofficial216@gmail.com"
                       className="contact-icon"
                       aria-label="Email for casting enquiries"
                     >
@@ -815,7 +815,9 @@ function App() {
 
       <footer className="site-footer">
         <div className="container footer-inner">
-          
+          <div className="footer-logo">
+            <img src={logoImg} alt="Seerat Logo" className="logo-img footer-logo-img" />
+          </div>
           <p className="footer-meta">
             Photography and footage available on request.
           </p>
@@ -849,6 +851,18 @@ function App() {
               <p className="modal-role">{selectedProject.role}</p>
               <p className="modal-year">{selectedProject.year}</p>
               <p className="modal-body">{selectedProject.description}</p>
+              {selectedProject.videoLink && (
+                <div className="modal-actions">
+                  <a
+                    href={selectedProject.videoLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn primary-btn"
+                  >
+                    Watch Video
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
