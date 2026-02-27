@@ -260,64 +260,76 @@ const projects = [
     videoLink: 'https://www.youtube.com/watch?v=9rZYFlDlb5Y',
   },
 ];
-
 const galleryModules = import.meta.glob(
-  './images/gallery/*.{png,jpg,jpeg,JPG,JPEG,webp,avif}',
-  {
-    eager: true,
-    query: '?url',
-    import: 'default',
-  },
+  './images/gallery/**/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true }
 )
 
 const galleryImages = Object.entries(galleryModules).map(
-  ([path, src], index) => {
+  ([path, module], index) => {
+    // Handle both { default: '...' } and '...' (Vite glob variations)
+    const src = typeof module === 'string' ? module : module?.default || module
+
     const filename = path.split('/').pop() || `image-${index + 1}`
     const baseName = filename.replace(/\.[^.]+$/, '')
     const label = baseName.replace(/[_-]+/g, ' ')
+
     return {
       id: `gallery-${index + 1}`,
       thumb: src,
       full: src,
       alt: `Seerat gallery photo - ${label}`,
     }
-  },
+  }
 )
 
-const achievements = [
-  {
-    year: '2025',
-    title: 'Best Child Performer (Television)',
-    description:
-      'Awarded by Mumbai Kids Talent Awards for performance in “City Lights”.',
-  },
-  {
-    year: '2024',
-    title: 'Featured in National Brand Campaign',
-    description:
-      'Lead face for Sunrise Cereal nationwide TV and digital campaign.',
-  },
-  {
-    year: '2023',
-    title: 'Festival Film Selection',
-    description:
-      '“Autumn Letters” selected at multiple children’s film festivals across India.',
-  },
-]
+// const galleryModules = import.meta.glob(
+//   './images/gallery/*.{png,jpg,jpeg,JPG,JPEG,webp,avif}',
+//   {
+//     eager: true,
+//     query: '?url',
+//     import: 'default',
+//   },
+// )
+
+// const galleryImages = Object.entries(galleryModules).map(
+//   ([path, src], index) => {
+//     const filename = path.split('/').pop() || `image-${index + 1}`
+//     const baseName = filename.replace(/\.[^.]+$/, '')
+//     const label = baseName.replace(/[_-]+/g, ' ')
+//     return {
+//       id: `gallery-${index + 1}`,
+//       thumb: src,
+//       full: src,
+//       alt: `Seerat gallery photo - ${label}`,
+//     }
+//   },
+// )
 
 function App() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [navOpen, setNavOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
   const [gallerySelection, setGallerySelection] = useState(null)
-  const year = new Date().getFullYear()
 
   useEffect(() => {
     const elements = document.querySelectorAll('[data-animate]')
+    
+    // Safety fallback: if everything is still hidden after 2 seconds, show it anyway
+    const timer = setTimeout(() => {
+      elements.forEach((element) => {
+        if (!element.classList.contains('visible')) {
+          element.classList.add('visible')
+        }
+      })
+    }, 2000)
+
     if (!('IntersectionObserver' in window)) {
       elements.forEach((element) => element.classList.add('visible'))
+      clearTimeout(timer)
       return
     }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -328,11 +340,15 @@ function App() {
         })
       },
       {
-        threshold: 0.18,
+        threshold: 0.1, // Lower threshold for better visibility trigger
+        rootMargin: '0px 0px -50px 0px'
       },
     )
     elements.forEach((element) => observer.observe(element))
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      clearTimeout(timer)
+    }
   }, [])
 
   const filteredProjects =
@@ -479,7 +495,7 @@ function App() {
                     </div>
                     <div className="detail-row">
                       <dt>Height</dt>
-                      <dd>4&apos; (122 cm)</dd>
+                      <dd>4&apos; 6&quot; (137.16 cm)</dd>
                     </div>
                     <div className="detail-row">
                       <dt>Weight</dt>
